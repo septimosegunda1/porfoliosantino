@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curriculum Vitae - Estudiante de Programación</title>
+  <style>
+    :root {
+      --primary-color: #4a6cf7;
+      --secondary-color: #3a5bd6;
+      --accent-color: #00e5ff;
+      --text-color: #333;
+      --text-light: #6c757d;
+      --bg-light: #f8f9fa;
+      --section-padding: 1.5rem;
+      --border-radius: 8px;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', 'Roboto', sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: #f5f5f5;
+      padding: 2rem;
+    }
+    
+    .cv-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: white;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, var(--primary-color), #0a1929);
+      color: white;
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .header::before {
+      content: '</>'; 
+      position: absolute;
+      font-size: 15rem;
+      opacity: 0.1;
+      font-weight: bold;
+      bottom: -3rem;
+      right: 1rem;
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid white;
+      background-color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    .profile-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .profile-info h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .profile-info h2 {
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+    
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+    
+    .contact-link:hover {
+      color: var(--accent-color);
+    }
+    
+    .section {
+      padding: var(--section-padding);
+      border-bottom: 1px solid #eaeaea;
+    }
+    
+    .section:last-child {
+      border-bottom: none;
+    }
+    
+    .section-title {
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .section-title i {
+      font-size: 1.2rem;
+    }
+    
+    .objective {
+      background-color: var(--bg-light);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    .timeline {
+      position: relative;
+    }
+    
+    .timeline-item {
+      padding-left: 30px;
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: var(--primary-color);
+    }
+    
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 26px;
+      width: 2px;
+      height: calc(100% - 18px);
+      background-color: #eaeaea;
+    }
+    
+    .timeline-item:last-child::after {
+      display: none;
+    }
+    
+    .timeline-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+    
+    .timeline-subtitle {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .skill-category {
+      margin-bottom: 1.5rem;
+    }
+    
+    .skill-category h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      color: var(--primary-color);
+    }
+    
+    .skill-item {
+      margin-bottom: 0.8rem;
+    }
+    
+    .skill-name {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.3rem;
+    }
+    
+    .skill-level {
+      height: 8px;
+      background-color: #eaeaea;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .skill-level-fill {
+      height: 100%;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    }
+    
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .project-card {
+      background-color: var(--bg-light);
+      border-radius: var(--border-radius);
+      padding: 1.2rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .project-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .project-description {
+      font-size: 0.9rem;
+      margin-bottom: 0.8rem;
+      color: var(--text-light);
+    }
+    
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .tech-tag {
+      background-color: #e9ecef;
+      color: var(--text-color);
+      padding: 0.3rem 0.6rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+    }
+    
+    .languages-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .language-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--bg-light);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+    }
+    
+    .language-item .dots {
+      display: flex;
+      gap: 2px;
+    }
+    
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #d1d1d1;
+    }
+    
+    .dot.filled {
+      background-color: var(--primary-color);
+    }
+    
+    .two-columns {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .interest-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    
+    .interest-tag {
+      background-color: var(--bg-light);
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .interest-tag i {
+      color: var(--primary-color);
+    }
+    
+    .references {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .reference-card {
+      background-color: var(--bg-light);
+      border-radius: var(--border-radius);
+      padding: 1.2rem;
+    }
+    
+    .reference-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+    
+    .reference-card p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .footer {
+      padding: 1.5rem;
+      text-align: center;
+      background-color: var(--bg-light);
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .fa {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+    }
+    
+    @media print {
+      body {
+        padding: 0;
+        background-color: white;
+      }
+      
+      .cv-container {
+        box-shadow: none;
+      }
+    }
+    
+    @media screen and (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .contact-links {
+        justify-content: center;
+      }
+      
+      .two-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cv-container">
+    <header class="header">
+      <div class="header-content">
+        <div class="profile-img">
+          <img src="/api/placeholder/150/150" alt="Foto de Perfil">
+        </div>
+        <div class="profile-info">
+          <h1>Tu Nombre Completo</h1>
+          <h2>Estudiante de Programación - Desarrollador Full Stack</h2>
+          <div class="contact-links">
+            <a href="mailto:tucorreo@ejemplo.com" class="contact-link">
+              <i class="fa">📧</i> tucorreo@ejemplo.com
+            </a>
+            <a href="tel:+34600000000" class="contact-link">
+              <i class="fa">📱</i> +34 600 000 000
+            </a>
+            <a href="https://linkedin.com/in/tunombre" class="contact-link">
+              <i class="fa">🔗</i> linkedin.com/in/tunombre
+            </a>
+            <a href="https://github.com/tunombre" class="contact-link">
+              <i class="fa">💻</i> github.com/tunombre
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <section class="section">
+      <h2 class="section-title"><i class="fa">👤</i> Perfil Profesional</h2>
+      <div class="objective">
+        <p>Estudiante de último año de Ingeniería Informática con especialización en Desarrollo de Software. Apasionado por crear soluciones tecnológicas intuitivas y escalables. Experiencia práctica en desarrollo web full-stack y aplicaciones móviles. Busco una oportunidad profesional donde aplicar mis conocimientos técnicos y creatividad para resolver problemas complejos mientras continúo creciendo como desarrollador.</p>
+      </div>
+    </section>
+    
+    <section class="section">
+      <h2 class="section-title"><i class="fa">🎓</i> Formación Académica</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3 class="timeline-title">Grado en Ingeniería Informática</h3>
+          <div class="timeline-subtitle">
+            <span>Universidad de [Tu Universidad]</span>
+            <span>2021 - 2025 (En curso)</span>
+          </div>
+          <p>Especialización en Desarrollo de Software. Proyecto final: Sistema de gestión de inventario con tecnologías web modernas.</p>
+        </div>
+        <div class="timeline-item">
+          <h3 class="timeline-title">Certificación en Desarrollo Web Full Stack</h3>
+          <div class="timeline-subtitle">
+            <span>Plataforma Educativa Online</span>
+            <span>2023</span>
+          </div>
+          <p>Formación intensiva en tecnologías modernas de desarrollo web, arquitectura de aplicaciones y metodologías ágiles.</p>
+        </div>
+        <div class="timeline-item">
+          <h3 class="timeline-title">Bachillerato Tecnológico</h3>
+          <div class="timeline-subtitle">
+            <span>Instituto [Nombre]</span>
+            <span>2019 - 2021</span>
+          </div>
+          <p>Especialidad en Tecnología. Nota media: 9.2/10</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section">
+      <h2 class="section-title"><i class="fa">💼</i> Experiencia Práctica</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3 class="timeline-title">Desarrollador Web en Prácticas</h3>
+          <div class="timeline-subtitle">
+            <span>Empresa XYZ</span>
+            <span>Junio 2024 - Septiembre 2024</span>
+          </div>
+          <p>Colaboración en el desarrollo frontend de una aplicación SPA utilizando React y TypeScript. Integración con APIs REST y optimización de rendimiento.</p>
+        </div>
+        <div class="timeline-item">
+          <h3 class="timeline-title">Proyecto Colaborativo Universitario</h3>
+          <div class="timeline-subtitle">
+            <span>Universidad de [Tu Universidad]</span>
+            <span>Enero 2023 - Mayo 2023</span>
+          </div>
+          <p>Desarrollo de una aplicación de gestión académica para el departamento de informática. Implementación del backend con Node.js y Express.</p>
+        </div>
+        <div class="timeline-item">
+          <h3 class="timeline-title">Freelance - Desarrollo Web</h3>
+          <div class="timeline-subtitle">
+            <span>Autónomo</span>
+            <span>2022 - Presente</span>
+          </div>
+          <p>Diseño y desarrollo de sitios web para pequeñas empresas y profesionales. Creación de soluciones personalizadas según necesidades específicas.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section">
+      <h2 class="section-title"><i class="fa">🛠️</i> Habilidades Técnicas</h2>
+      <div class="skills-container">
+        <div class="skill-category">
+          <h3>Desarrollo Frontend</h3>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>HTML5/CSS3</span>
+              <span>90%</span>
+            </div>
+            <div class="skill-level">
+              <div class="skill-level-fill" style="width: 90%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>JavaScript/TypeScript</span>
+              <span>85%</span>
+            </div>
+            <div class="skill-level">
+              <div class="skill-level-fill" style="width: 85%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>React</span>
+              <span>80%</span>
+            </div>
+            <div class="skill-level">
+              <div class="skill-level-fill" style="width: 80%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Vue.js</span>
+              <span>70%</span>
+            </div>
+            <div class="skill-level">
+              <div class="skill-level-fill" style="width: 70%"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Desarrollo Backend</h3>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Node.js/Express</span>
+              <span>75%</span>
+            </div>
+            <div class="skill-level">
+              <div class="skill-level-fill" style="width: 75%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>PHP</span>
+              <span>70%</span>
+            </div>
+            <div class="skill-level">
+              <div class="skill-level-fill" style="width: 70%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>MySQL/MongoDB</span>
+              <span>75%</span>
+            </div>
+            <div class="skill-level">
+              <div class="skill-level-fill" style="width: 75%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>API REST/GraphQL</span>
+              <span>65%</span>
+            </div>
+            <div class="skill-level">
+              <div class="skill-level-fill" style="width: 65%"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>DevOps & Herramientas</h3>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Git/GitHub</span>
+              <span>85%</span>
+            </div>
+            <div class="skill-level">
+              <div class="skill-level-fill" style="width: 85%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Docker</span>
+              <span>60%</span>
+            </div>
+            <div class="skill-level">
+              <div class="skill-level-fill" style="width: 60%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>AWS/Firebase</span>
+              <span>50%</span>
+            </div>
+            <div class="skill-level">
+              <div class="skill-level-fill" style="width: 50%"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Mobile & Otros</h3>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>React Native</span>
+              <span>65%</span>
+            </div>
+            <div class="skill-level">
+              <div class="skill-level-fill" style="width: 65%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Figma/Adobe XD</span>
+              <span>60%</span>
+            </div>
+            <div class="skill-level">
+              <div class="skill-level-fill" style="width: 60%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">
+              <span>Testing (Jest, Cypress)</span>
+              <span>55%</span>
+            </div>
+            <div class="skill-level">
+              <div class="skill-level-fill" style="width: 55%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section">
+      <h2 class="section-title"><i class="fa">🚀</i> Proyectos Destacados</h2>
+      <div class="projects">
+        <div class="project-card">
+          <h3>Weather App con API</h3>
+          <p class="project-description">Aplicación meteorológica en tiempo real que muestra pronósticos detallados y alertas personalizadas.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Redux</span>
+            <span class="tech-tag">OpenWeather API</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>Sistema de Gestión de Tareas</h3>
+          <p class="project-description">Aplicación full-stack para organización de proyectos, con autenticación, roles y panel de administración.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">JWT</span>
+            <span class="tech-tag">React</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>E-commerce de Productos Locales</h3>
+          <p class="project-description">Plataforma para conectar productores locales con consumidores, incluyendo sistema de pagos y valoraciones.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Vue.js</span>
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">Stripe API</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <div class="section two-columns">
+      <div>
+        <h2 class="section-title"><i class="fa">🌐</i> Idiomas</h2>
+        <div class="languages-list">
+          <div class="language-item">
+            <span>Español</span>
+            <div class="dots">
+              <span class="dot filled"></span>
+              <span class="dot filled"></span>
+              <span class="dot filled"></span>
+              <span class="dot filled"></span>
+              <span class="dot filled"></span>
+            </div>
+            <span>Nativo</span>
+          </div>
+          <div class="language-item">
+            <span>Inglés</span>
+            <div class="dots">
+              <span class="dot filled"></span>
+              <span class="dot filled"></span>
+              <span class="dot filled"></span>
+              <span class="dot filled"></span>
+              <span class="dot"></span>
+            </div>
+            <span>C1</span>
+          </div>
+          <div class="language-item">
+            <span>Francés</span>
+            <div class="dots">
+              <span class="dot filled"></span>
+              <span class="dot filled"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <span>A2</span>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <h2 class="section-title"><i class="fa">🔍</i> Intereses</h2>
+        <div class="interest-tags">
+          <span class="interest-tag"><i class="fa">🌐</i> Desarrollo Web</span>
+          <span class="interest-tag"><i class="fa">📱</i> Apps Móviles</span>
+          <span class="interest-tag"><i class="fa">🤖</i> Inteligencia Artificial</span>
+          <span class="interest-tag"><i class="fa">🎮</i> Desarrollo de Videojuegos</span>
+          <span class="interest-tag"><i class="fa">🔐</i> Ciberseguridad</span>
+          <span class="interest-tag"><i class="fa">📊</i> Data Science</span>
+        </div>
+      </div>
+    </div>
+    
+    <section class="section">
+      <h2 class="section-title"><i class="fa">👥</i> Referencias</h2>
+      <div class="references">
+        <div class="reference-card">
+          <h3>Dr. Nombre Apellido</h3>
+          <p>Profesor de Ingeniería de Software</p>
+          <p>Universidad de [Tu Universidad]</p>
+          <p>email@universidad.es</p>
+        </div>
+        <div class="reference-card">
+          <h3>Nombre Apellido</h3>
+          <p>Director de Desarrollo</p>
+          <p>Empresa XYZ</p>
+          <p>email@empresa.com</p>
+        </div>
+      </div>
+    </section>
+    
+    <footer class="footer">
+      <p>Referencias adicionales disponibles bajo petición</p>
+      <p>Actualizado: Abril 2025</p>
+    </footer>
+  </div>
+</body>
+</html>
